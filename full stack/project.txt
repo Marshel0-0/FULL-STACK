@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monthly Expense Tracker</title>
+  <style>
+    body {
+      background: #f4f7f8;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .expense-form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 500px;
+      margin: 0 auto 30px;
+    }
+    .expense-form input, .expense-form select, .expense-form button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      font-size: 16px;
+    }
+    button {
+      background-color: #ff001e;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    table {
+      width: 100%;
+      background: #fff;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Monthly Expense Tracker</h1>
+  <div class="expense-form">
+    <label>Item Name:</label>
+    <input type="text" id="itemName" placeholder="Enter item name">
+
+    <label>Amount ($):</label>
+    <input type="number" id="amount" placeholder="Enter amount" min="0">
+
+    <label>Category:</label>
+    <select id="category">
+      <option value="">Select category</option>
+      <option value="Groceries">Groceries</option>
+      <option value="Utilities">Utilities</option>
+      <option value="Entertainment">Entertainment</option>
+      <option value="Health">Health</option>
+      <option value="Others">Others</option>
+    </select>
+    <input type="month" id="Month">
+
+    <button onclick="addExpense()">Add Item</button>
+  </div>
+
+  <table id="expenseTable">
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Amount ($)</th>
+        <th>Category</th>
+        <th>Month & Year</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <script>
+    function addExpense() {
+      const itemName = document.getElementById("itemName").value.trim();
+      const amount = document.getElementById("amount").value.trim();
+      const category = document.getElementById("category").value;
+      const Month = document.getElementById("Month").value;
+
+      const table = document.getElementById("expenseTable").querySelector("tbody");
+      const newRow = table.insertRow();
+
+      newRow.insertCell(0).textContent = itemName;
+      newRow.insertCell(1).textContent = parseFloat(amount).toFixed(2);
+      newRow.insertCell(2).textContent = category;
+      newRow.insertCell(3).textContent = Month;
+      
+    }
+  </script>
+</body>
+</html>
